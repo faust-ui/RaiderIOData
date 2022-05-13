@@ -1,7 +1,7 @@
 import requests
 import re
 import time
-import MySQLdb
+import pymysql
 import sys
 from datetime import datetime
 
@@ -61,7 +61,7 @@ def get_dungeon_data(chara_id, chara_name):
     # 分析数据包，提取有用数据，并写入数据库
 
     # 建立数据库连接
-    conn = MySQLdb.connect(host='127.0.0.1', user='root', passwd='K715492d', db='dungeon_data')
+    conn = pymysql.connect(host='127.0.0.1', user='root', passwd='K715492d', db='dungeon_data')
     cur = conn.cursor()
     # 重置数据库表格中所有本角色相关记录，之后再重新写入
     # sql_delete = 'delete from dungeon_data where character_id'

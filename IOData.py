@@ -33,13 +33,14 @@ def query(sql, *args):
 
 
 def get_center1_up(ids):
-    sql = f"select count(dungeon_name) from dungeon_data WHERE character_id='{ids}' group by dungeon_name"
-    res = query(sql)
-    times = [re[0] for re in res]
+    sql = f"select dungeon_name, count(dungeon_name) from dungeon_data WHERE character_id='{ids}' group by dungeon_name"
+    times = get_data_list(sql)
+
     return times
 
 
 all_dungeon_name = ['NW', 'PF', 'STRT', 'HOA', 'GMBT', 'TOP', 'DOS', 'SD', 'MISTS', 'SOA']
+# all_dungeon_name = ["The Necrotic Wake", "Plaguefall", "Tazavesh: Streets of Wonder","Halls of Atonement", "Tazavesh: So'leah's Gambit", "Theater of Pain","De Other Side ", "Sanguine Depths ", "Mists of Tirna Scithe","Spires of Ascension"]
 
 
 def get_echart_left_data(ids):
@@ -207,5 +208,5 @@ def get_character_info_img(ids):
 
 
 if __name__ == '__main__':
-    data = get_echart_right_data(42254052)
+    data = get_center1_up(42254052)
     print(data)

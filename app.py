@@ -1,6 +1,6 @@
 import IOData
 from flask import Flask, render_template, jsonify, request
-import spider_f
+import spider_m
 
 app = Flask(__name__)
 
@@ -77,7 +77,7 @@ def search():
     print(c_faction)
     print(c_class)
     print(c_region)
-    result = spider_f.spiders(c_name, c_faction, c_class, c_region, c_realm)
+    result = spider_m.spiders(c_name, c_faction, c_class, c_region, c_realm)
     return jsonify({"returns": result})
 
 
