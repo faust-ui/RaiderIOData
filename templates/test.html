@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="../static/js/jquery.js"></script>
+	
+</head>
+<body>
+<h1>这是第一个标题</h1>
+<h2>这是第二个标题</h2>
+<input type="text" placeholder="Character Name" name="name" id="name" style="width:auto;height: auto; margin-top: 10px;">
+<br />
+<button id="bt1">按填写内容改变</button>
+<button id="bt2">更换图片</button>
+<button id="bt3">更改填寫內容</button>
+<br />
+<img  id="img1" style="display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;" src="https://raider.io/snapshots/characters/twitter/55830563/gilrean.jpg">
+<span id="loading" class="loadingcss">
+	<img src='../static/images/loading.gif' src='@{/images/loading.gif}' style='text-align:center;margin:5% auto;margin-top:5%; position:relative; left: 45%; top: 10%;'>
+	<p style='color:#ffffff;font-size:14px;position:absolute; left: 35%; top: 60%;'>不要进行别的操作,请稍后……</p>
+</span>
+<style type="text/css">
+		.loadingcss{
+				height: 30%;
+				width: 30%;
+				position:absolute;
+				left: 35%;
+				top: center;
+				background-color: rgba(0,0,0,0.4);/*显示遮罩层背景颜色和透明度*/
+				/*如果上边的效果不理想可以分开实现背景颜色的透明度,背景颜色和透明度可自行调节*/
+				/*
+					background-color: #ccc;
+					filter:alpha(Opacity=80);-moz-opacity: 0.5;opacity: 0.5;
+				*/
+			}
+</style>
+<script>
+    $("#bt1").click(function(){
+        $.ajax({
+            url: "/ajax",
+            type: "post",
+            data:{
+				"name":$("#name").val()},
+            success: function (r){
+                $("h1").html("回调内容为："+r)
+            },error:function (){
+                alert("发送失败！")
+            }
+        })
+    })
+</script>
+<script>
+    $("#bt2").click(function(){
+        let img = document.getElementById("img1");
+        $.ajax({
+            url: "/img",
+            type: "post",
+            data:{},
+			beforeSend:function(XMLHttpRequest){
+				var winNode = $("#loading");
+				//使遮罩层显示方法
+				winNode.show();
+				//解决按钮重复提交
+				$("#hiddent").removeAttr("onclick");
+			},
+            success: function (r){
+                img.src = r
+            },error:function (){
+				winNode.hide();
+                alert("发送失败2！");
+            }
+        })
+    })
+</script>
+<script>
+	$("#bt3").click(function(){
+		$("#name").val("浮士德遊魂");
+	}
+	)
+</script>
+<script type="text/javascript">
+	$(function(){
+		$("#loading").hide();
+	});
+</script>
+<script type="text/javascript">
+	window.οnbefοreunlοad=function(){
+		  return("确定离开当前页面吗？");
+	}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link herf="favicon.ico HTTP/1.1" rel="shortcut icon">
+    <link href="../static/css/index.css" rel="stylesheet"/>
+    <script src="../static/js/jquery.js"></script>
+</head>
+    <body background="../static/images/background.png">
+	    <div class="search" style="text-align: center; margin-top: 215px;">
+	        <h1>Search Your Character</h1>
+	        <div>
+	            <input type="text" placeholder="Character Name" name="name" id="name" style="width:auto;height: auto; margin-top: 10px;">
+                <input type="text" placeholder="Realm" name="realm" id="realm" style="width:auto;height: auto;margin-top: 10px;">
+            </div>
+			<div>
+			    Faction<select name="faction" id="faction"> 
+			         <option value="alliance">Alliance</option>
+			         <option value="horde">Horde</option>
+			    </select> 
+				Class<select name="class" id="class">
+					<option value="Death Knight">Death Knight</option>
+				    <option value="Demon Hunter">Demon Hunter</option>
+					<option value="Druid">Druid</option>
+					<option value="Hunter">Hunter</option>
+					<option value="Mage">Mage</option>
+					<option value="Paladin">Paladin</option>
+					<option value="Priest">Priest</option>
+					<option value="Shaman">Shaman</option>
+					<option value="Warlock">Warlock</option>
+					<option value="Warrior">Warrior</option>
+					<option value="Rogue">Rogue</option>	
+				</select>
+				Region<select name="region" id="region">
+				    <option value="US">US</option>
+				    <option value="EU">EU</option>
+					<option value="TW">TW</option>
+					<option value="CN">CN</option>
+					<option value="KR">KR</option>			 
+				</select>
+			</div>
+            <button id="button1" class="btn" style="margin-top: 35px; width: 100px;;height: 30px;">Search</button><br/>
+	    </div>
+		<span id="loading" class="loadingcss">
+			<img src='../static/images/loading.gif' src='@{/images/loading.gif}' style='text-align:center;margin:5% auto;margin-top:5%; position:relative; left: 45%; top: 10%;'>
+			<p style='color:#ffffff;font-size:25px;position:absolute; left: 5%; top: 50%;'>...正在搜索，这需要一些时间，不要进行别的操作……</p>
+		</span>
+		<div style="text-align: center; margin-top: 215px;">
+			<h2>快捷查询</h2>
+			<button id="button2" class="btn" style="margin-top: 35px; width: 100px;;height: 30px;">浮士德游魂</button>
+			<button id="button3" class="btn" style="margin-top: 35px; width: 100px;;height: 30px;">Mjoker</button>
+		</div>
+		<style type="text/css">
+				.loadingcss{
+						height: 30%;
+						width: 30%;
+						position:absolute;
+						left: 35%;
+						top: 40%;
+						background-color: rgba(0,0,0,0.4);/*显示遮罩层背景颜色和透明度*/
+						/*如果上边的效果不理想可以分开实现背景颜色的透明度,背景颜色和透明度可自行调节*/
+						/*
+							background-color: #ccc;
+							filter:alpha(Opacity=80);-moz-opacity: 0.5;opacity: 0.5;
+						*/
+					}
+		</style>
+		<script>
+            $("#button1").click(function() {
+				$.ajax({
+					url:"/search",
+					type:"post",
+					data:{
+						"name": $("#name").val(),
+						"realm": $("#realm").val(),
+						"faction": $("#faction").val(),
+						"clas": $("#class").val(),
+						"region": $("#region").val(),
+					},
+					beforeSend:function(XMLHttpRequest){
+						var winNode = $("#loading");
+						//使遮罩层显示方法
+						winNode.show();
+						//解决按钮重复提交
+						$("#hiddent").removeAttr("onclick");
+					},
+					success:function (ret,statues){
+						if (ret.returns == 0){
+							alert("未搜索到结果！请重新输入信息");
+							location.reload();
+
+						}
+						else {
+							var destination_url = '/show?id='+ret.returns
+							window.location.href=destination_url;
+						}
+					}
+					
+				})
+                
+			})
+		</script>
+		<script>
+		    $("#button2").click(function() {
+		    	var destination_url = '/show?id=42254052'
+				window.location.href=destination_url
+
+		    })
+		</script>
+		<script>
+		    $("#button3").click(function() {
+				var destination_url = '/show?id=73431457'
+				window.location.href=destination_url
+
+		    })
+		</script>
+		<script type="text/javascript">
+				$(function(){
+					$("#loading").hide();
+				});
+		</script>
+	</body>
+</html>

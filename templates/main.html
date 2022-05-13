@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Raider.IO个人数据展示</title>
+		
+		<link rel="shortcut icon" href="../static/images/ico.ico"  type="image/x-icon"/>
+		<script type="text/javascript" src="../static/js/jquery.js"></script>
+		<script src="../static/js/echarts.js"></script>
+		<script type="text/javascript" src="../static/js/jquery.liMarquee.js"></script>
+		<script type="text/javascript" src="../static/js/jquery.cxselect.min.js"></script>
+		<script type="text/javascript" src="../static/js/echarts-wordcloud.min.js"></script>
+		<link rel="stylesheet" href="../static/css/comon0.css">
+	</head>
+	<body style="background:#000d4a url(../static/images/background.png) center top;">
+		<div class="head">
+		    <div class="time"><span id="getdate"></span></div>
+		    <h1 herf="https://raider.io/characters/tw/crystalpine-stinger/浮士德遊魂">Raider.IO个人数据展示</h1>
+		</div>
+		<div class="mainbox">
+		            <ul class="clearfix">
+		                <li>
+		                    <div class="boxall" style="height:275px;">
+								<div class="alltitle">角色信息板</div>
+		                        <img  id="img1" style="display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;">
+		                    </div>
+		                    
+		                    <div class="boxall" style="height:650px;">
+		                        <div class="alltitle">地下城副本角色堆叠图</div>
+								<div class="navboxall" id="echart_left"></div>
+		                    </div>
+		                </li>
+		                <li>
+		
+		                    <div class="boxall" style="height:400px">
+								<div class="alltitle">各副本攻略次数</div>
+		                        <div id="cn1" class="num"></div>
+		                        <div id="cn2" class="num"></div>
+		                        <div id="cn3" class="num"></div>
+		                        <div id="cn4" class="num"></div>
+		                        <div id="cn5" class="num"></div>
+		                        <div id="cnt1" class="txt">The Necrotic Wake</div>
+		                        <div class="txt">Plaguefall</div>
+		                        <div class="txt">Streets of Wonder</div>
+		                        <div class="txt">Halls of Atonement</div>
+		                        <div class="txt">So'leah's Gambit</div>
+		                        <div id="cn6" class="num"></div>
+		                        <div id="cn7" class="num"></div>
+		                        <div id="cn8" class="num"></div>
+		                        <div id="cn9" class="num"></div>
+		                        <div id="cn10" class="num"></div>
+		                        <div class="txt">Theater of Pain</div>
+		                        <div class="txt">De Other Side</div>
+		                        <div class="txt">Sanguine Depths</div>
+		                        <div class="txt">Mists of Tirna Scithe</div>
+		                        <div class="txt">Spires of Ascension</div>		
+		                    </div>
+		                    <div class="boxall" style="height:500px">
+		                        <div class="alltitle">副本词缀限时数据</div>
+		                        <div class="navboxall" id="echart_center"></div>
+		
+		                    </div>
+		                </li>
+		                <li>
+		                    <div class="boxall" style="height:450px">
+		                        <div class="alltitle">过往词缀占比</div>
+		                        <div class="navboxall" id="echart_right_up"></div>
+		                    </div>
+		
+		                    <div class="boxall" style="height:450px">
+		                        <div class="alltitle">个人能力蛛网图</div>
+		                        <div class="navboxall" id="echart_right"></div>
+		                    </div>
+		
+		
+		                </li>
+		            </ul>
+		
+		</div>
+
+		<script src="../static/js/lw.js"></script>
+
+
+	</body>
+</html>
